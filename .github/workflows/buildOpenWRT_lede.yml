@@ -20,12 +20,12 @@ on:
         description: '版本分支'
         options:
           - "master"
-      feeds_file:
-        type: choice
-        description: '替换软件源配置(feeds.conf.default)'
-        options:
-        - "true"
-        - "false"
+#      feeds_file:
+#        type: choice
+#        description: '替换软件源配置(feeds.conf.default)'
+#        options:
+#        - "true"
+#        - "false"
       config_file:
         description: 'config 文件名称(.config)'
         default: 'lede.config'
@@ -127,11 +127,11 @@ jobs:
         [ -e "$BEFOR_PATCH" ] && echo "befor=success" >> "$GITHUB_OUTPUT"
         [ -e "$AFTER_PATCH" ] && echo "after=success" >> "$GITHUB_OUTPUT"
     
-    - name: 替换软件源配置
-      if: env.REPLACE_FEEDS == 'true' && steps.check.outputs.feeds == 'success'
-      run: |
-        [ -e $FEEDS_FILE ] && rm -f openwrt/feeds.conf.default
-        [ -e $FEEDS_FILE ] && mv $FEEDS_FILE openwrt/feeds.conf.default
+#    - name: 替换软件源配置
+#      if: env.REPLACE_FEEDS == 'true' && steps.check.outputs.feeds == 'success'
+#      run: |
+#        [ -e $FEEDS_FILE ] && rm -f openwrt/feeds.conf.default
+#        [ -e $FEEDS_FILE ] && mv $FEEDS_FILE openwrt/feeds.conf.default
     
       
     - name: 导入补丁目录
